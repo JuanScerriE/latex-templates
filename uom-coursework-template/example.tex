@@ -1,0 +1,116 @@
+\documentclass{uom-coursework}
+
+
+\begin{document}
+To find Fibonacci sums very quickly, the two results listed
+below \cite{wikifib} can be used.
+
+\begin{align}
+  F_n = \round{\frac{\phi^n}{\sqrt{5}}}, \quad \phi = \frac{1 +
+  \sqrt{5}}{2}. \label{fib_num}
+\end{align}
+
+\begin{align}
+  \sum_{i=1}^{n} F_i = F_{n+2} - 1. \label{fib_sum}
+\end{align}
+
+The original equation for the Fibonacci numbers is a recurrence
+relation defined as
+
+\begin{align}
+  F_n = F_{n-1} + F_{n-2}, \qquad F_1 = F_2 = 1. \label{fib_def}
+\end{align}
+
+However, there exists a closed-form expression called Binet's
+Formula \cite{wolframfib} which is the following
+
+\begin{align*}
+  F_n = \frac{\phi^n - (-\phi)^n}{\sqrt{5}}.
+\end{align*}
+
+One notices that,
+
+\begin{align*}
+  \forall \, n \in \mathbb{N} : \abs{\frac{(-\phi)^n}{\sqrt{5}}}
+  < \frac{1}{2},
+\end{align*}
+
+which implies
+
+\begin{align*}
+  \forall \, n \in \mathbb{N} : \abs{F_n -
+  \frac{\phi^n}{\sqrt{5}}} < \frac{1}{2}.
+\end{align*}
+
+Visually, this can be represented as follows.
+
+\begin{center}
+  \begin{tikzpicture}
+    \draw [thick] (-4, 0) -- (4, 0);
+    \draw [thick] (0, -0.2) -- (0, 0.2);
+
+    % Brackets
+    \node at (-1.5, 0) {$($};
+    \node at (1.5, 0) {$)$};
+
+    % Bottom labels
+    \node [below] at (0, -0.25) {$F_n$};
+    \node [below] at (-1.5, -0.25) {$F_n - \frac{1}{2}$};
+    \node [below] at (1.5, -0.25) {$F_n + \frac{1}{2}$};
+
+    % Indicator of our value
+    \draw [thick, ->] (-1, 0.5) -- (-1, 0);
+
+    % Our value
+    \node [above] at (-1, 0.5) {$\frac{\phi^n}{\sqrt{5}}$};
+  \end{tikzpicture}
+\end{center}
+
+This allows to conclude that $\frac{\phi^n}{\sqrt{5}}$ is always
+within rounding error of the actual Fibonacci number. Hence, by
+rounding $\frac{\phi^n}{\sqrt{5}}$ we get the $n$-th Fibonacci
+number.
+
+This completes our derivation for \ref{fib_num}.
+
+\vspace{1em}
+
+We can prove \ref{fib_sum} by using an inductive argument.
+
+\vspace{1em}
+
+\textit{Argument.}
+
+Base case ($n = 1$): 
+
+$$LHS = \sum_{i = 1}^{1} F_i = F_1 = 1$$ 
+$$RHS = F_{1 + 2} - 1 = F_3 - 1 = F_2 + F_1 - 1 = 1 + 1 - 1 =
+1$$
+
+Hence, the base case holds since $LHS = RHS$.
+
+\vspace{1em}
+
+Inductive case ($n = k$):
+
+Suppose that sum holds for $n = k - 1$. 
+
+\begin{align}
+  \sum_{i = 1}^{k - 1} F_i = F_{k - 1 + 2} - 1 = F_{k + 1} - 1
+  \label{ind_hyp}
+\end{align}
+
+We are required to show that the sum holds for $n = k$.
+
+\begin{align*}
+  \sum_{i = 1}^{k} F_i & = F_{k} + \sum_{i = 1}^{k - 1} F_i\\
+                       % & \qquad (By\ \ref{ind_hyp})\\
+                       & = F_{k + 1} + F_{k} - 1\\
+                       % & \qquad (By\ \ref{fib_def})\\
+                       & = F_{k + 2} - 1 
+\end{align*}
+
+Therefore, by induction, \ref{fib_sum} holds for all natural
+numbers.
+
+\end{document}
