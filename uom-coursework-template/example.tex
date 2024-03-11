@@ -1,9 +1,41 @@
 \documentclass{uom-coursework}
 
+\usepackage{blindtext}
 
 \begin{document}
+
+\title{Data Structures and\\Algorithms 2}
+\tagline{Coursework}
+\author{Juan Scerri}
+\authorid{1234567A}
+\courseworkname{Some Degree}
+\doctype{coursework}
+\courseworkdate{\monthyeardate\today}
+\subjectcode{ICS2210}
+
+\frontmatter
+\maketitle
+
+\tableofcontents*
+
+\clearpage
+
+\pagestyle{umpage}
+\mainmatter
+\chapter{Introduction}
+
+Noti għal-qabel l-eżmai
+
+\texttt{ABCDE... Is this Courier?}
+
 To find Fibonacci sums very quickly, the two results listed
-below \cite{wikifib} can be used.
+below can be used.
+
+
+
+\url{https://en.wikipedia.org/wiki/Coffee}
+
+\blinddocument
 
 \begin{align}
   F_n = \round{\frac{\phi^n}{\sqrt{5}}}, \quad \phi = \frac{1 +
@@ -14,6 +46,8 @@ below \cite{wikifib} can be used.
   \sum_{i=1}^{n} F_i = F_{n+2} - 1. \label{fib_sum}
 \end{align}
 
+\coffeestainC{0.3}{0.85}{-25}{1cm}{0cm}
+
 The original equation for the Fibonacci numbers is a recurrence
 relation defined as
 
@@ -22,7 +56,7 @@ relation defined as
 \end{align}
 
 However, there exists a closed-form expression called Binet's
-Formula \cite{wolframfib} which is the following
+Formula which is the following
 
 \begin{align*}
   F_n = \frac{\phi^n - (-\phi)^n}{\sqrt{5}}.
@@ -112,5 +146,84 @@ We are required to show that the sum holds for $n = k$.
 
 Therefore, by induction, \ref{fib_sum} holds for all natural
 numbers.
+
+\chapter{Chapter}
+This is a chapter
+\section{Section g}
+This is a section
+\subsection{Sub Section}
+This is a sub section
+\subsubsection{Sub Sub Section}
+This is a sub sub section
+
+\begin{itemize}
+  \item this is an item
+  \item this is also an item
+  \begin{itemize}
+    \item Subitem A
+    \item Subitem B
+    \begin{itemize}
+      \item Subsubitem A
+      \item Subsubitem B
+      \begin{itemize}
+        \item Subsubsubitem A
+        \item Subsubsubitem B
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\begin{lstlisting}[caption={The section in \texttt{emitString()}
+which handles escaping.},language=C]
+if (ch == '\\') {
+  switch (ch = CSNext()) {
+    case '\\':
+    case '"':
+      // DO NOTHING
+      break;
+    default:
+      fprintf(
+          stderr,
+          "emitString: Invalid escape sequence\n");
+      return -1;
+  }
+}
+
+if (tok.len >= alc) {
+  alc += GROW_SIZE;
+  char *tmp = realloc(tok.str, sizeof(char) * alc);
+
+  if (tmp == NULL) {
+    perror("emitString");
+    return -1;
+  } else {
+    tok.str = tmp;
+  }
+}
+\end{lstlisting}
+
+\begin{prop}
+  hello
+\end{prop}
+\begin{thm}
+  hello
+\end{thm}
+\begin{conj}
+  hello
+\end{conj}
+\begin{cor}
+  hello
+\end{cor}
+\begin{lma}
+  hello
+\end{lma}
+
+
+\appendix
+
+\chapter{Is this part of the appendix?}
+\section{This is in the appendix}
+\chapter{Is this also part of the appendix?}
+
 
 \end{document}
