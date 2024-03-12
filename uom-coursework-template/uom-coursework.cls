@@ -16,15 +16,15 @@
 %% https://tex.stackexchange.com/questions/468922/oneside-in-memoir-causing-header-trouble
 
 %% Header text
-\makeevenhead{umpage}{\sffamily\small\leftmark}{}{\sffamily\small\rightmark}
-\makeoddhead{umpage}{\sffamily\small\leftmark}{}{\sffamily\small\rightmark}
+\makeevenhead{umpage}{\color{gray}\sffamily\small\leftmark}{}{\color{gray}\sffamily\small\rightmark}
+\makeoddhead{umpage}{\color{gray}\sffamily\small\leftmark}{}{\color{gray}\sffamily\small\rightmark}
 
 %% Foot text
 \makeevenfoot{umpage}{}{\thepage}{} % Page number at bottom
 \makeoddfoot{umpage}{}{\thepage}{}
 
 %% Header and Footer rules
-\makeheadfootruleprefix{umpage}{}{}
+\makeheadfootruleprefix{umpage}{\color{gray}}{}
 \makeheadrule{umpage}{\textwidth}{\normalrulethickness}
 
 \makepsmarks{umpage}{%
@@ -40,15 +40,15 @@
 \makepagestyle{umpage}
 
 %% Header text
-\makeevenhead{umpage}{}{}{\sffamily\small\rightmark}
-\makeoddhead{umpage}{}{}{\sffamily\small\rightmark}
+\makeevenhead{umpage}{}{}{\color{gray}\sffamily\small\rightmark}
+\makeoddhead{umpage}{}{}{\color{gray}\sffamily\small\rightmark}
 
 %% Foot text
 \makeevenfoot{umpage}{}{\thepage}{} % Page number at bottom
 \makeoddfoot{umpage}{}{\thepage}{}
 
 %% Header and Footer rules
-\makeheadfootruleprefix{umpage}{}{}
+\makeheadfootruleprefix{umpage}{\color{gray}}{}
 \makeheadrule{umpage}{\textwidth}{\normalrulethickness}
 
 \makepsmarks{umpage}{%
