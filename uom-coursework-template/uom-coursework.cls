@@ -9,10 +9,63 @@
 
 \ProvidesClass{uom-coursework}[2024/03/09 v0.1 University of Malta Coursework]
 
+\newcommand{\@makeumpagestyle}{
+\makepagestyle{umpage}
+
+%% This travesty is due to a "bug" (well it might just be intended behaviour) in memoir, see
+%% https://tex.stackexchange.com/questions/468922/oneside-in-memoir-causing-header-trouble
+
+%% Header text
+\makeevenhead{umpage}{\sffamily\small\leftmark}{}{\sffamily\small\rightmark}
+\makeoddhead{umpage}{\sffamily\small\leftmark}{}{\sffamily\small\rightmark}
+
+%% Foot text
+\makeevenfoot{umpage}{}{\thepage}{} % Page number at bottom
+\makeoddfoot{umpage}{}{\thepage}{}
+
+%% Header and Footer rules
+\makeheadfootruleprefix{umpage}{}{}
+\makeheadrule{umpage}{\textwidth}{\normalrulethickness}
+
+\makepsmarks{umpage}{%
+	\createmark{chapter}{left}{shownumber}{\@chapapp\ }{. \ }
+	\createmark{section}{right}{shownumber}{}{. \ }
+}
+
+}
+
 %% Allow for manual configuration of the memoir class
+\DeclareOption{article}{
+\renewcommand{\@makeumpagestyle}{
+\makepagestyle{umpage}
+
+%% Header text
+\makeevenhead{umpage}{}{}{\sffamily\small\rightmark}
+\makeoddhead{umpage}{}{}{\sffamily\small\rightmark}
+
+%% Foot text
+\makeevenfoot{umpage}{}{\thepage}{} % Page number at bottom
+\makeoddfoot{umpage}{}{\thepage}{}
+
+%% Header and Footer rules
+\makeheadfootruleprefix{umpage}{}{}
+\makeheadrule{umpage}{\textwidth}{\normalrulethickness}
+
+\makepsmarks{umpage}{%
+	\createmark{section}{right}{shownumber}{}{. \ }
+}
+
+}
+
+\PassOptionsToClass{\CurrentOption}{memoir}
+}
+
 \DeclareOption*{
 \PassOptionsToClass{\CurrentOption}{memoir}
-}\ProcessOptions\relax
+}
+
+\ProcessOptions\relax
+
 
 %% Load the class with these default options
 \LoadClass[12pt,a4paper,oneside,final]{memoir}
@@ -22,7 +75,6 @@
 \RequirePackage{iftex}
 
 \RequireLuaHBTeX
-
 
 \RequirePackage{polyglossia} % Load polyglossia to help take care of language-specific typesetting conventions and hyphenation 
 \RequirePackage{xcolor} % For named colours
@@ -175,27 +227,7 @@
 
 \setlength{\parskip}{0.75em} % Instead increase the spacing between each paragraph
 
-\makepagestyle{umpage}
-
-%% This travesty is due to a "bug" (well it might just be intended behaviour) in memoir, see
-%% https://tex.stackexchange.com/questions/468922/oneside-in-memoir-causing-header-trouble
-
-%% Header text
-\makeevenhead{umpage}{\color{gray}\sffamily\small\leftmark}{}{\color{gray}\sffamily\small\rightmark}
-\makeoddhead{umpage}{\color{gray}\sffamily\small\leftmark}{}{\color{gray}\sffamily\small\rightmark}
-
-%% Foot text
-\makeevenfoot{umpage}{}{\thepage}{} % Page number at bottom
-\makeoddfoot{umpage}{}{\thepage}{}
-
-%% Header and Footer rules
-\makeheadfootruleprefix{umpage}{\color{gray}}{}
-\makeheadrule{umpage}{\textwidth}{\normalrulethickness}
-
-\makepsmarks{umpage}{%
-	\createmark{chapter}{left}{shownumber}{\@chapapp\ }{. \ }
-	\createmark{section}{right}{shownumber}{}{. \ }
-}
+\@makeumpagestyle
 
 %% The backmatter is usually used for the bibliography
 \copypagestyle{umpageback}{umpage}
