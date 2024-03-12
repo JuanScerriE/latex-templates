@@ -23,8 +23,6 @@
 
 \RequireLuaHBTeX
 
-\RequirePackage{datetime} % For Current Month and Year (cover page)
-\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
 
 \RequirePackage{polyglossia} % Load polyglossia to help take care of language-specific typesetting conventions and hyphenation 
 \RequirePackage{xcolor} % For named colours
@@ -42,6 +40,7 @@
 \RequirePackage{coffeestains} % No reading is truly ever starts without an accompanying cup of coffee (or ... tea)
 \RequirePackage{tcolorbox} % If we don't have fancy boxes then what are we doing?
 \RequirePackage{fontspec} % This gives us more granular control over our fonts
+\RequirePackage{datetime} % For Current Month and Year (cover page)
 
 %% The below is a list of packages with some pre-set options
 \RequirePackage[printonlyused,withpage]{acronym}
@@ -132,6 +131,7 @@
 %% The ID of the author
 \def\authorid#1{\gdef\@authorid{#1}}
 
+
 %% **** UM Definitions (End) ****
 
 %% **** Document Options (Start) ****
@@ -208,6 +208,8 @@
 \graphicspath{{./images/}} % Where to look for images (paths) ...
 
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg} % Graphics extensions to load
+
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR} % Our date format
 
 %% other possible values: bianchi, bringhurst, brotherton,
 %% chappell, crosshead, culver, dash, demo2, demo3, dowding, ell (default),
@@ -324,7 +326,7 @@
 %% The front page
 \renewcommand{\maketitle}{
 \begingroup
-\vspace*{1in}
+% \vspace*{1in}
 \textcolor{UMRed}{\rule{\linewidth}{2pt}}
 
 \vspace*{2.5pt}\hfill\textcolor{UMRed}{\rule{2pt}{0.5\textheight}}
@@ -344,7 +346,7 @@
 	\parbox[t]{0.80\linewidth}{\footnotesize\textit{A \@doctype\ submitted in fulfilment of study unit \@subjectcode}.}    
 }
 \thispagestyle{empty}
-\if@openright\cleardoublepage\else\clearpage\fi
+% \if@openright\cleardoublepage\else\clearpage\fi
 \endgroup}
 %% *** Title Page (End) ***
 
